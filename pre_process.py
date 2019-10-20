@@ -8,6 +8,7 @@ Created on Tue Oct  8 20:13:19 2019
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     df = pd.read_csv("./dataset/c01.csv", encoding='cp932')
@@ -25,23 +26,22 @@ if __name__ == '__main__':
     print(df_s.head)  # 最初だけ表示する、重いデータに対してよく使う
 
     """値抽出の仕方"""
-    # print(type(df_s.values[0]))
-    #
-    # prefecture_code_series = df_s['都道府県コード']
-    # print(prefecture_code_series)  # 直接column nameで指定してseries型で返す
-    #
-    # print(df_s.values[0][1])
-    # print(prefecture_code_series[0])
-    #
-    # # at, iat: 単独の要素の値
-    # print(df_s.at[0, r"都道府県コード"])  # index & column name
-    # print(df_s.iat[0, 1])  # num and num
-    #
-    # # loc, iloc: 単独及び複数の要素の値
-    # # speed: at iat > loc, iloc
-    # print(df_s.loc["0":"1", ::4])  # slice
-    # print(df_s.loc[::, "都道府県コード":"元号"])  # slice
+    print(type(df_s.values[0]))
 
+    prefecture_code_series = df_s['都道府県コード']
+    print(prefecture_code_series)  # 直接column nameで指定してseries型で返す
+
+    print(df_s.values[0][1])
+    print(prefecture_code_series[0])
+
+    # at, iat: 単独の要素の値
+    print(df_s.at[0, r"都道府県コード"])  # index & column name
+    print(df_s.iat[0, 1])  # num and num
+
+    # loc, iloc: 単独及び複数の要素の値
+    # speed: at iat > loc, iloc
+    print(df_s.loc["0":"1", ::4])  # slice
+    print(df_s.loc[::, "都道府県コード":"元号"])  # slice
     """"""
 
     """欠損値の扱い"""
@@ -60,19 +60,28 @@ if __name__ == '__main__':
     print(df_cr)
 
     # 欠損値を0で補完
-    df_0 = df_r.fillna(0)
+    df_0 = df_cr.fillna(0)
     print(df_0)
-
     """"""
 
     """統計量算出"""
+    print(df_0.dtypes)
+    df_men = df_0["人口（男）"].astype(int)
+    print(df_men.describe())
+    print(df_men.max())
+    print(df_men.min())
+    print(df_men.count())
+    print(df_men.std())
+    print(df_men.mean())
     """"""
 
     """特徴抽出"""
 
     # カテゴリ化
 
-    # WIP
+    # one-hot-encoding
+
+    # binning
     """"""
 
 
