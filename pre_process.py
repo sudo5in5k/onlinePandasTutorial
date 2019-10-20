@@ -6,9 +6,8 @@ Created on Tue Oct  8 20:13:19 2019
 @author: ussy
 """
 
-import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import pandas as pd
 
 if __name__ == '__main__':
     df = pd.read_csv("./dataset/c01.csv", encoding='cp932')
@@ -65,6 +64,8 @@ if __name__ == '__main__':
     """"""
 
     """統計量算出"""
+
+    # 基本統計量
     print(df_0.dtypes)
     df_men = df_0["人口（男）"].astype(int)
     print(df_men.describe())
@@ -73,6 +74,10 @@ if __name__ == '__main__':
     print(df_men.count())
     print(df_men.std())
     print(df_men.mean())
+
+    # 相関
+    df_women = df_0["人口（女）"].astype(int)
+    print(df_men.corr(df_women))
     """"""
 
     """特徴抽出"""
@@ -83,5 +88,3 @@ if __name__ == '__main__':
 
     # binning
     """"""
-
-
